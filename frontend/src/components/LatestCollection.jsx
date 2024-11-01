@@ -8,7 +8,10 @@ const LatestCollection = () => {
   const [latestProducts, setLatestProducts] = useState([]);
 
   useEffect(() => {
-    setLatestProducts(products.splice(0, 10));
+    const latestProduct = products.filter(
+      (item) => (item.latestProducts = true)
+    );
+    setLatestProducts(latestProduct.splice(0, 10));
   }, []);
 
   return (

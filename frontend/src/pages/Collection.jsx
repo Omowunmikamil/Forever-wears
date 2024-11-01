@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import Title from "../components/Title";
@@ -7,6 +7,7 @@ import ProductItem from "../components/ProductItem";
 const Collection = () => {
   // Displaying all products in the collection
   const { products, search, showSearch } = useContext(ShopContext);
+
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [sortCategory, setSortCategory] = useState([]);
