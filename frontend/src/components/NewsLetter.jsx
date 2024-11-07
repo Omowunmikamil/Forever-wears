@@ -1,5 +1,3 @@
-import React from "react";
-
 function NewsLetter() {
   // Handle form submission
   const handleSubmit = (e) => {
@@ -17,7 +15,7 @@ function NewsLetter() {
       </p>
       <form
         onSubmit={handleSubmit}
-        className="w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 pl-3 border"
+        className="w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 pl-3 border rounded"
       >
         <input
           type="email"
@@ -28,7 +26,7 @@ function NewsLetter() {
         />
         <button
           type="submit"
-          className="py-4 px-6 sm:px-10 bg-black text-white text-xs hover:bg-gray-700"
+          className="py-4 px-6 sm:px-10 bg-black text-white text-xs hover:bg-gray-700 rounded-r"
         >
           SUBSCRIBE
         </button>

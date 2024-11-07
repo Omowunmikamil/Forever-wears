@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { NavLink, Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
@@ -41,11 +41,13 @@ const Navbar = () => {
         />
 
         <div className="group relative">
-          <img
-            src={assets.profile_icon}
-            className="w-4 lg:w-5 cursor-pointer"
-            alt="profile"
-          />
+          <Link to={"/login"}>
+            <img
+              src={assets.profile_icon}
+              className="w-4 lg:w-5 cursor-pointer"
+              alt="profile"
+            />
+          </Link>
           <div className="dropdown-menu group-hover:block hidden absolute right-0 pt-4">
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
               <p className="cursor-pointer hover:text-black">My Profile</p>

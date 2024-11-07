@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
+import Button from "../components/Button";
 
 const Product = () => {
   const { productId } = useParams();
@@ -89,12 +90,11 @@ const Product = () => {
               ))}
             </div>
           </div>
-          <button
+          <Button
             onClick={() => addToCart(productData._id, size)}
-            className="py-3 px-10 bg-black text-white text-sm active:bg-gray-700"
-          >
-            ADD TO CART
-          </button>
+            className={"px-8 mb-4"}
+            text={"ADD TO CART"}
+          />
           <hr className="mt-5 sm:w-4/5" />
           <div className="flex flex-col mt-5 text-gray-500 text-xs gap-1">
             <p>100% Original product.</p>
