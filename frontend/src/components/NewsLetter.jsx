@@ -2,21 +2,28 @@ function NewsLetter() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent the default form submission
+    // You can add any logic here to handle form data submission
   };
 
   return (
     <div className="text-center">
+      {/* Heading text */}
       <p className="text-2xl font-medium text-gray-700">
         Subscribe now & get 20% off
       </p>
+
+      {/* Subheading text */}
       <p className="text-gray-400 mt-3">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry.
       </p>
+
+      {/* Subscription form */}
       <form
         onSubmit={handleSubmit}
         className="w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 pl-3 border rounded"
       >
+        {/* Email input field */}
         <input
           type="email"
           name="email"
@@ -24,6 +31,8 @@ function NewsLetter() {
           required
           className="w-full sm:flex-1 outline-none"
         />
+
+        {/* Subscribe button */}
         <button
           type="submit"
           className="py-4 px-6 sm:px-10 bg-black text-white text-xs hover:bg-gray-700 rounded-r"

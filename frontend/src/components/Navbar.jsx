@@ -4,15 +4,20 @@ import { NavLink, Link } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
+  // State to control sidebar visibility on small screens
   const [visible, setVisible] = useState(false);
 
+  // Context data for controlling search visibility and getting cart count
   const { setShowSearch, getCartCount } = useContext(ShopContext);
 
   return (
     <div className="flex justify-between items-center py-4 font-medium">
+      {/* Logo - links to the homepage */}
       <Link to="/">
         <img src={assets.logo} alt="logo" className="w-28" />
       </Link>
+
+      {/* Main navigation links, hidden on small screens */}
       <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
         <NavLink to="/" className="flex flex-col gap-1 items-center">
           <p>HOME</p>
@@ -32,7 +37,9 @@ const Navbar = () => {
         </NavLink>
       </ul>
 
+      {/* Icons: search, profile, cart, and menu for small screens */}
       <div className="flex gap-3 md:gap-4 lg:gap-6 items-center">
+        {/* Search icon triggers search modal */}
         <img
           className="w-4 lg:w-5 cursor-pointer"
           onClick={() => setShowSearch(true)}
@@ -40,6 +47,7 @@ const Navbar = () => {
           alt="search"
         />
 
+        {/* Profile icon with dropdown menu for profile options */}
         <div className="group relative">
           <Link to={"/login"}>
             <img
@@ -56,6 +64,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
+        {/* Cart icon with item count display */}
         <Link to="/cart" className="relative">
           <img
             src={assets.cart_icon}
@@ -66,6 +76,8 @@ const Navbar = () => {
             {getCartCount()}
           </p>
         </Link>
+
+        {/* Hamburger menu icon for small screens, toggles sidebar visibility */}
         <img
           onClick={() => setVisible(true)}
           className="w-4 cursor-pointer sm:hidden"
@@ -74,13 +86,14 @@ const Navbar = () => {
         />
       </div>
 
-      {/* Sidebar menu for small screen */}
+      {/* Sidebar menu for mobile view, displays when 'visible' is true */}
       <div
         className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
           visible ? "w-full" : "w-0"
         }`}
       >
         <div className="flex flex-col text-gray-600">
+          {/* Close button for sidebar */}
           <div
             onClick={() => {
               setVisible(false);
@@ -90,6 +103,8 @@ const Navbar = () => {
             <img src={assets.dropdown_icon} className="h-4 rotate-180" alt="" />
             <p>Back</p>
           </div>
+
+          {/* Sidebar links to main sections, hides sidebar on click */}
           <NavLink
             onClick={() => setVisible(false)}
             className="py-2 pl-6 border"

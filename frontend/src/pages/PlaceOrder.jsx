@@ -6,18 +6,23 @@ import Button from "../components/Button";
 import { ShopContext } from "../context/ShopContext";
 
 const PlaceOrder = () => {
+  // State to track the selected payment method
   const [method, setMethod] = useState("cod");
+
+  // Extracting navigate function from ShopContext for navigation purposes
   const { navigate } = useContext(ShopContext);
 
   return (
     <div className="flex flex-col sm:flex-row justify-between min-h-[80vh] pt-5 sm:pt-14 gap-4 border-t">
-      {/*----- left side -----*/}
+      {/* Left side: Delivery Information Form */}
       <div className="flex flex-col w-full sm:max-w-[480px] gap-4">
         <div className="text-xl sm:text-2xl my-3">
+          {/* Title for the section */}
           <Title text1={"DELIVERY"} text2={"INFORMATION"} />
         </div>
-        {/*----- shipping address form -----*/}
+        {/* Shipping address form */}
         <div className="flex gap-3">
+          {/* Input fields for first and last name */}
           <input
             type="text"
             placeholder="First Name"
@@ -31,6 +36,7 @@ const PlaceOrder = () => {
             className="border border-gray-300 outline-none rounded py-1.5 px-3.5 w-full"
           />
         </div>
+        {/* Input fields for email and street address */}
         <input
           type="email"
           placeholder="Email Address"
@@ -43,6 +49,7 @@ const PlaceOrder = () => {
           required
           className="border border-gray-300 outline-none rounded py-1.5 px-3.5 w-full"
         />
+        {/* Input fields for city, state, and zipcode */}
         <div className="flex gap-3">
           <input
             type="text"
@@ -71,6 +78,7 @@ const PlaceOrder = () => {
             className="border border-gray-300 outline-none rounded py-1.5 px-3.5 w-full"
           />
         </div>
+        {/* Input for phone number */}
         <input
           type="number"
           placeholder="Phone Number"
@@ -79,17 +87,20 @@ const PlaceOrder = () => {
         />
       </div>
 
-      {/*----- Right Side -----*/}
+      {/* Right side: Cart total and Payment Method */}
       <div className="mt-8">
         <div className="mt-8 min-w-80">
+          {/* Displaying cart total */}
           <CartTotal />
         </div>
 
         <div className="mt-12">
+          {/* Title for the payment method section */}
           <Title text1={"PAYMENT"} text2={"METHOD"} />
 
-          {/*----- Select Payment Method -----*/}
+          {/* Payment Method Selection */}
           <div className="flex flex-col lg:flex-row gap-3">
+            {/* Stripe payment option */}
             <div
               onClick={() => setMethod("stripe")}
               className="flex items-center border py-2 px-3 gap-3 cursor-pointer"
@@ -102,6 +113,7 @@ const PlaceOrder = () => {
               <img src={assets.stripe_logo} alt="" className="h-5 mx-4" />
             </div>
 
+            {/* Razorpay payment option */}
             <div
               onClick={() => setMethod("razorpay")}
               className="flex items-center border py-2 px-3 gap-3 cursor-pointer"
@@ -114,6 +126,7 @@ const PlaceOrder = () => {
               <img src={assets.razorpay_logo} alt="" className="h-5 mx-4" />
             </div>
 
+            {/* Cash on Delivery payment option */}
             <div
               onClick={() => setMethod("cod")}
               className="flex items-center border py-2 px-3 gap-3 cursor-pointer"
@@ -129,6 +142,7 @@ const PlaceOrder = () => {
             </div>
           </div>
 
+          {/* Place order button */}
           <div className="flex justify-end">
             <Button
               onClick={() => navigate("/orders")}
