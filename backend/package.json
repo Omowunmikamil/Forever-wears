@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,11 +17,18 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoos": "^0.0.1-security",
+    "mongoose": "^8.8.0",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.7",
     "razorpay": "^2.9.5",
     "stripe": "^17.3.1",
     "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/multer": "^1.4.12",
+    "@types/validator": "^13.12.2"
   }
 }
