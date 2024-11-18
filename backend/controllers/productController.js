@@ -37,7 +37,7 @@ const addProduct = async (req, res) => {
       description,
       price: Number(price),
       sizes: sizes ? JSON.parse(sizes) : [], // Default to an empty array if sizes is undefined
-      bestSeller: bestseller ? JSON.parse(bestseller) : false, // Default to false if bestSeller is undefined
+      bestseller: bestseller ? JSON.parse(bestseller) : false, // Default to false if bestseller is undefined
 
       // sizes: JSON.parse(sizes),
       // bestseller: bestseller === true ? true : false,
