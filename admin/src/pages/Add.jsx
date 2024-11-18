@@ -2,6 +2,7 @@ import { assets } from "../assets/assets";
 import { useState } from "react";
 import axios from "axios";
 import { backendUrl } from "../App";
+import { toast } from "react-toastify";
 
 const Add = ({ token }) => {
   const [image1, setImage1] = useState(false);
@@ -16,9 +17,11 @@ const Add = ({ token }) => {
   const [subCategory, setSubCategory] = useState("Topwear");
   const [sizes, setSizes] = useState([]);
   const [bestseller, setBestseller] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onHandleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const formData = new FormData();
@@ -41,8 +44,29 @@ const Add = ({ token }) => {
         formData,
         { headers: { token } }
       );
-      console.log(response.data);
-    } catch (error) {}
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setLoading(false);
+        setName("");
+        setDescription("");
+        setPrice("");
+        setSizes([]);
+        setBestseller(false);
+        setImage1(false);
+        setImage2(false);
+        setImage3(false);
+        setImage4(false);
+        setCategory("Men");
+        setSubCategory("Topwear");
+      } else {
+        toast.error(response.data.message);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -282,7 +306,32 @@ const Add = ({ token }) => {
         type="submit"
         className="w-28 bg-black text-white py-3 mt-4 hover:bg-gray-600"
       >
-        ADD
+        {loading ? (
+          <div className="flex items-center justify-center">
+            <svg
+              className="animate-spin h-5 w-5 mr-3 text-p-button3"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+              ></path>
+            </svg>
+          </div>
+        ) : (
+          "ADD"
+        )}
       </button>
     </form>
   );
