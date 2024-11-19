@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import Button from "../components/Button";
 import NewsLetter from "../components/NewsLetter";
 import { ShopContext } from "../context/ShopContext";
 import axios from "axios";
@@ -125,11 +124,12 @@ const Login = () => {
         </div>
 
         {/* Submit button changes based on form state */}
-        {currentState === "Login" ? (
-          <Button type="submit" text={"Sign In"} className={"px-14 mt-6"} />
-        ) : (
-          <Button type="submit" text={"Create"} className={"px-14 mt-6"} />
-        )}
+        <button
+          type="submit"
+          className="bg-black text-white text-xs hover:bg-gray-700 py-3 rounded px-14 mt-6"
+        >
+          {currentState === "Login" ? "Sign In" : "Sign Up"}
+        </button>
       </form>
 
       {/* Newsletter section */}
