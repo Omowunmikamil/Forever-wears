@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "../components/Button";
 import NewsLetter from "../components/NewsLetter";
+import { ShopContext } from "../context/ShopContext";
 
 const Login = () => {
   // State to track whether the form is in "Sign Up" or "Login" state
   const [currentState, setCurrentState] = useState("Sign Up");
+  const { token, setToken, backendUrl, navigate } = useContext(ShopContext); // import from context for later useages
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // Handle form submission (currently no functionality defined)
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    // Add form submission logic here (e.g., sending data to an API)
+    // Form submission logic to sending data to the API
+    try {
+    } catch (error) {}
   };
 
   return (
@@ -31,6 +38,8 @@ const Login = () => {
         ) : (
           <input
             type="name"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
             placeholder="Name"
             required
             className="w-full border border-gray-700 outline-none rounded py-2 px-3"
@@ -40,6 +49,8 @@ const Login = () => {
         {/* Common Email input field for both Sign Up and Login */}
         <input
           type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
           placeholder="Email"
           required
           className="w-full border border-gray-700 outline-none rounded py-2 px-3"
@@ -48,6 +59,8 @@ const Login = () => {
         {/* Common Password input field for both Sign Up and Login */}
         <input
           type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
           placeholder="Password"
           required
           className="w-full border border-gray-700 outline-none rounded py-2 px-3"

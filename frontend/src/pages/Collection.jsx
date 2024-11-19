@@ -88,7 +88,7 @@ const Collection = () => {
   // useEffect hook to apply filters whenever categories, subcategories, or search query changes
   useEffect(() => {
     applyFilters();
-  }, [sortCategory, sortSubCategory, search, showSearch]);
+  }, [sortCategory, sortSubCategory, search, showSearch, products]);
 
   // useEffect hook to sort the products whenever the sort type changes
   useEffect(() => {

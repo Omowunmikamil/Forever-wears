@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
-import { products } from "../assets/assets";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // Create the ShopContext to be shared across components
 export const ShopContext = createContext();
@@ -10,16 +10,15 @@ const ShopContextProvider = (props) => {
   // State to manage search query and visibility of search bar
   const [search, setSearch] = useState(" ");
   const [showSearch, setShowSearch] = useState(false);
-
-  // State to hold cart data, structured as an object with item IDs and sizes
-  const [cartItems, setCartItems] = useState({});
+  const [products, setProducts] = useState([]); // State to manage products, search results, and filtering options
+  const [token, setToken] = useState(""); // State to manage user authentication
+  const [cartItems, setCartItems] = useState({}); // State to hold cart data, structured as an object with item IDs and sizes
 
   // Currency symbol and delivery fee constant
   const currency = "$";
   const delivery_fee = 20;
-
-  // Initialize navigate function from react-router
-  const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL; // default backend url for backend requests and responses
+  const navigate = useNavigate(); // Initialize navigate function from react-router
 
   // Function to add items to the cart
   const addToCart = async (itemId, size) => {
@@ -113,6 +112,26 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
+  // Function to fetch products data from the backend API
+  const getProductsData = async () => {
+    try {
+      const response = await axios.get(backendUrl + "/api/product/list");
+      if (response.data.success) {
+        setProducts(response.data.products);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    // Fetch products data from the backend API
+    getProductsData();
+  }, []);
+
   // Create a value object to hold all the context data
   const value = {
     products,
@@ -128,6 +147,9 @@ const ShopContextProvider = (props) => {
     updateQuantity,
     getCartAmount,
     navigate, // Providing the navigate function to be used in other components
+    backendUrl,
+    token,
+    setToken,
   };
 
   // Provide the context value to children components
