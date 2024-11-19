@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import Button from "../components/Button";
 import NewsLetter from "../components/NewsLetter";
 import { ShopContext } from "../context/ShopContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = () => {
   // State to track whether the form is in "Sign Up" or "Login" state
@@ -16,7 +18,36 @@ const Login = () => {
     event.preventDefault();
     // Form submission logic to sending data to the API
     try {
-    } catch (error) {}
+      if (currentState === "Sign Up") {
+        // Send data to the server asynchronously and receive the result from the serve
+        const response = await axios.post(backendUrl + "/api/user/register", {
+          name,
+          email,
+          password,
+        });
+        // create logic to handle registration success and error messages
+        if (response.data.success) {
+          setToken(response.data.token);
+          localStorage.setItem("token", response.data.token);
+        } else {
+          toast.error(response.data.message);
+        }
+      } else {
+        const response = await axios.post(backendUrl + "/api/user/login", {
+          email,
+          password,
+        });
+        if (response.data.success) {
+          setToken(response.data.token);
+          localStorage.setItem("token", response.data.token);
+        } else {
+          toast.error(response.data.message);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -95,9 +126,9 @@ const Login = () => {
 
         {/* Submit button changes based on form state */}
         {currentState === "Login" ? (
-          <Button text={"Sign In"} className={"px-12 mt-6"} />
+          <Button type="submit" text={"Sign In"} className={"px-14 mt-6"} />
         ) : (
-          <Button text={"Create"} className={"px-12 mt-6"} />
+          <Button type="submit" text={"Create"} className={"px-14 mt-6"} />
         )}
       </form>
 
