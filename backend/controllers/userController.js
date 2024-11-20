@@ -15,24 +15,25 @@ const loginUser = async (req, res) => {
     // Validate the request body
     const { email, password } = req.body;
 
-    // Check if all required fields are provided
+    // Find the user by email
     const user = await userModel.findOne({ email });
 
-    // Check if the user exists
+    // Check if user exists
     if (!user) {
       return res.json({ success: false, message: "User does not exist" });
     }
 
-    // Check if the password is correct
+    // Compare provided password with the hashed password in the database
     const isMatch = await bcrypt.compare(password, user.password);
 
-    // Generate a JSON Web Token (JWT) for the user
+    // If the password doesn't match, return an error
     if (!isMatch) {
-      const token = createToken(user._id);
-      res.json({ success: true, token });
-    } else {
       return res.json({ success: false, message: "Invalid credentials" });
     }
+
+    // Generate a JWT if the password is correct
+    const token = createToken(user._id);
+    res.json({ success: true, token });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });

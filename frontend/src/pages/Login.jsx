@@ -15,19 +15,21 @@ const Login = () => {
   // Handle form submission (currently no functionality defined)
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    // Form submission logic to sending data to the API
+    console.log("Form submitted");
+
     try {
       if (currentState === "Sign Up") {
-        // Send data to the server asynchronously and receive the result from the serve
         const response = await axios.post(backendUrl + "/api/user/register", {
           name,
           email,
           password,
         });
-        // create logic to handle registration success and error messages
+        console.log(response.data);
+
         if (response.data.success) {
           setToken(response.data.token);
           localStorage.setItem("token", response.data.token);
+          toast.success("Registration successful!");
         } else {
           toast.error(response.data.message);
         }
@@ -36,9 +38,12 @@ const Login = () => {
           email,
           password,
         });
+        console.log(response.data);
+
         if (response.data.success) {
           setToken(response.data.token);
           localStorage.setItem("token", response.data.token);
+          toast.success("Login successful!");
         } else {
           toast.error(response.data.message);
         }
