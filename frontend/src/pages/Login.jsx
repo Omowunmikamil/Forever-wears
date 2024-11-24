@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import NewsLetter from "../components/NewsLetter";
 import { ShopContext } from "../context/ShopContext";
 import axios from "axios";
@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   // State to track whether the form is in "Sign Up" or "Login" state
-  const [currentState, setCurrentState] = useState("Sign Up");
+  const [currentState, setCurrentState] = useState("Login");
   const { token, setToken, backendUrl, navigate } = useContext(ShopContext); // import from context for later useages
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -53,6 +53,12 @@ const Login = () => {
       toast.error(error.message);
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
 
   return (
     <div className="border-t">

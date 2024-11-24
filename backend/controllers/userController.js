@@ -2,7 +2,6 @@ import userModel from "../models/userModel.js";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { response } from "express";
 
 // generate a JSON Web Token (JWT) for the user from jsonwebtoken
 const createToken = (id) => {
