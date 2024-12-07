@@ -2,7 +2,6 @@ function NewsLetter() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent the default form submission
-    // You can add any logic here to handle form data submission
   };
 
   return (

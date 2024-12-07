@@ -125,7 +125,7 @@ const Collection = () => {
                 value={"Men"}
                 className="w-3"
                 onChange={toggleCategory} // Toggle category selection
-              />{" "}
+              />
               Men
             </p>
             <p className=" flex gap-2">
@@ -134,7 +134,7 @@ const Collection = () => {
                 value={"Women"}
                 className="w-3"
                 onChange={toggleCategory} // Toggle category selection
-              />{" "}
+              />
               Women
             </p>
             <p className=" flex gap-2">
@@ -143,7 +143,7 @@ const Collection = () => {
                 value={"Kids"}
                 className="w-3"
                 onChange={toggleCategory} // Toggle category selection
-              />{" "}
+              />
               Kids
             </p>
           </div>
@@ -164,7 +164,7 @@ const Collection = () => {
                 value={"Topwear"}
                 className="w-3"
                 onChange={toggleSubCategory} // Toggle subcategory selection
-              />{" "}
+              />
               Top Wear
             </p>
             <p className=" flex gap-2">
@@ -173,7 +173,7 @@ const Collection = () => {
                 value={"Bottomwear"}
                 className="w-3"
                 onChange={toggleSubCategory} // Toggle subcategory selection
-              />{" "}
+              />
               Bottom Wear
             </p>
             <p className=" flex gap-2">
@@ -182,7 +182,7 @@ const Collection = () => {
                 value={"Winterwear"}
                 className="w-3"
                 onChange={toggleSubCategory} // Toggle subcategory selection
-              />{" "}
+              />
               Winter Wear
             </p>
           </div>
