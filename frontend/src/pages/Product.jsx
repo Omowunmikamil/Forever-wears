@@ -59,8 +59,8 @@ const Product = () => {
 
         {/*----- Product Information -----*/}
         <div className="flex-1">
-          <h1 className="font-medium mt-2 text-2xl">{productData.name}</h1>
           {/* Product name */}
+          <h1 className="font-medium mt-2 text-2xl">{productData.name}</h1>
           {/* Rating section */}
           <div className="flex items-center gap-1 mt-2">
             <img src={assets.star_icon} alt="" className="w-3.5" />
